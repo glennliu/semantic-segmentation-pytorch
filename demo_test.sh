@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # Image and model names
-TEST_IMG=ADE_val_00001519.jpg
+TEST_IMG=./test/corridor.jpg
+img1=./test/seg_000809.png
+img2=./test/seg_000800.png
+#TEST_IMG=./test/ADE_val_00000015.jpg
 MODEL_PATH=baseline-resnet50dilated-ppm_deepsup
-RESULT_PATH=./
+RESULT_PATH=./test/
 
 ENCODER=$MODEL_PATH/encoder_epoch_20.pth
 DECODER=$MODEL_PATH/decoder_epoch_20.pth
@@ -25,7 +28,7 @@ fi
 # Inference
 python3 -u test.py \
   --model_path $MODEL_PATH \
-  --test_imgs $TEST_IMG \
+  --test_imgs $img1 $img2 \
   --arch_encoder resnet50dilated \
   --arch_decoder ppm_deepsup \
   --fc_dim 2048 \
